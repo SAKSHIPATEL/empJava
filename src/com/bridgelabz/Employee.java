@@ -12,16 +12,19 @@ public class Employee {
 		int part_day_hour=4;
 		int empCheck = (int) (Math.floor(Math.random() * 10) % 3);
 		System.out.println("Show the status"+empCheck);
-		if (empCheck == IS_FULL_TIME) {
-			int Total_Wages=WAGE_PER_HOUR*full_day_hour;
-			System.out.println("Total Wages of full time hour are :"+Total_Wages);
-		}
-		else if (empCheck == IS_PART_TIME){
-			int Total_Wages=WAGE_PER_HOUR*part_day_hour;
-			System.out.println("Total Wages of part time hour are :"+Total_Wages);
-		}
-		else {
-			System.out.println("Employee is not on the work very lazy !!!!!");
+		switch(empCheck) {
+			case 0 : System.out.println("Employee is very lazy and absent");
+					 break;
+			case 1 : int Total_Wages=WAGE_PER_HOUR*full_day_hour;
+					System.out.println("Total Wages for full time are :"+Total_Wages);
+					break;
+			case 2 : int Total_Part_Wages=WAGE_PER_HOUR*part_day_hour;
+					 System.out.println("Total wages for part time are :"+Total_Part_Wages);
+					 break;
+			default : System.out.println("Out of reach");
+					 break;
+			
+				
 		}
 	}
 }
