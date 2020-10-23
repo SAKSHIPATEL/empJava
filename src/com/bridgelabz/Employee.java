@@ -5,38 +5,48 @@ import java.util.Scanner;
 public class Employee {
 	public static final int IS_FULL_TIME=1;
 	public static final int IS_PART_TIME=2;
-	public static final int RATE_PER_HOUR = 20;
-	public static final int NUM_OF_WORKING_DAYS = 20;
-	public static final int MAX_HRS = 100;
-
-	public static void main(String[] args) {
-		Employee emp=new Employee();
-		emp.Calculation();
-	}
-		
-	public void Calculation() {
-		int empHours = 0;
-		int totalSalary = 0;
-		int totalEmpHrs = 0;
-		int totalWorkingDays = 0;
-		while (totalEmpHrs < MAX_HRS && totalWorkingDays < NUM_OF_WORKING_DAYS) {
-			totalWorkingDays++;
-			int empCheck = (int) (Math.floor(Math.random() * 10) % 3);
-			switch (empCheck) {
-			case IS_FULL_TIME:
-				empHours = 8;
-				break;
-			case IS_PART_TIME:
-				empHours = 4;
-				break;
-			default:
-				empHours = 0;
-				break;
-			}
-			totalEmpHrs += empHours;
-			System.out.println("Days : " + totalWorkingDays + "Emp hours : " + empHours);
+	private final String company;
+	private final int RATE_PER_HOUR;
+	private final int workingDays;
+	private final int maxHours;
+	
+	public Employee(String company,int RATE_PER_HOUR,int workingDays,int maxHours) {
+		this.company=company;
+		this.RATE_PER_HOUR=RATE_PER_HOUR;
+		this.workingDays=workingDays;
+		this.maxHours=maxHours;
 		}
-		totalSalary = RATE_PER_HOUR * totalEmpHrs;
-		System.out.println("Total Salary of an employee in a month are : " + totalSalary);
+	private int Calculation() {
+		int empHours=0,totalEmpHours=0,totalWorkingDays=0;
+		
+		while(totalEmpHours<=maxHours && totalWorkingDays<workingDays) {
+			totalWorkingDays++;
+			int check=(int) (Math.floor(Math.random()*10)%3);
+			switch(check) {
+			 case IS_FULL_TIME : empHours=8;
+			 					 break;
+			 case IS_PART_TIME : empHours=4;
+			 					 break;
+			 default : empHours=0;
+			}
+			totalEmpHours+=empHours;
+			System.out.println("Day :"+totalWorkingDays+"Emp Hours :"+empHours);
+			
+		}
+		System.out.println("Total Employee work Hours :"+totalEmpHours);
+		return totalEmpHours*RATE_PER_HOUR;
+	}
+	public static void main(String[] args) {
+		System.out.println("========Welcome to Employee Wage Computation========");
+		Employee fab=new Employee("Facebook",20,20,100);
+		Employee app=new Employee("Apple",35,35,100);
+		Employee amz=new Employee("Amazon",30,30,200);
+		Employee net=new Employee("Netflix",50,10,100);
+		Employee gog=new Employee("Google",50,45,200);
+		System.out.println("Total Employee Wage for "+fab.company+":"+fab.Calculation());
+		System.out.println("Total Employee Wage for "+app.company+":"+app.Calculation());
+		System.out.println("Total Employee Wage for "+amz.company+":"+amz.Calculation());
+		System.out.println("Total Employee Wage for "+net.company+":"+net.Calculation());
+		System.out.println("Total Employee Wage for "+gog.company+":"+gog.Calculation());
 	}
 }
