@@ -45,7 +45,7 @@ public class EmpWageBuilderArray {
 						totalEmphrs += emphrs;
 						System.out.println("days" +totalworkingdays+ "Emphrs" +emphrs);
 					}
-					return totalEmphrs+companyEmpWage.empRatePerHour;
+					return totalEmphrs+companyEmpWage.empRateperHour;
 					
 				}
 			public static void main(String[] args) {
