@@ -31,32 +31,40 @@ public class EmpWageBuilder implements IComputeEmpWage {
 				
 			}
 			}
-			private int computeEmpWages(CompanyEmpWage companyEmpWage) {
-					int emphrs = 0, totalworkingdays = 0, totalEmphrs = 0;
-					while (totalEmphrs < companyEmpWage.maxHours && totalworkingdays < companyEmpWage.workingDays) 
-					{
-						totalworkingdays++;
-						int random = (int) Math.floor(Math.random() * 10) % 3;
-						switch (random) {
+		public int computeEmpWages(CompanyEmpWage companyEmpWage) {
+			int emphrs = 0, totalworkingdays = 0, totalEmphrs = 0;
+			while (totalEmphrs < companyEmpWage.maxHours && totalworkingdays < companyEmpWage.workingDays) 
+			{
+				totalworkingdays++;
+				int random = (int) Math.floor(Math.random() * 10) % 3;
+				switch (random) {
 
-						case 1:
-							emphrs = 8;
-							break;
+				case 1:
+					emphrs = 8;
+					break;
 
-						case 2:
-							emphrs = 4;
-							break;
+				case 2:
+					emphrs = 4;
+					break;
 
-						default:
-							emphrs = 0;// not present
+				default:
+					emphrs = 0;// not present
 
-						}
-						totalEmphrs += emphrs;
-						//System.out.println("days" +totalworkingdays+ "Emphrs" +emphrs);
-					}
-					return totalEmphrs+companyEmpWage.empRateperHour;
-					
+				}
+				totalEmphrs += emphrs;
+				//System.out.println("days" +totalworkingdays+ "Emphrs" +emphrs);
 			}
+			return totalEmphrs+companyEmpWage.empRateperHour;
+			
+	}
+			
+			
+	@Override
+	public int getTotalWage(String company) {
+		return companyToEmpWageMap.get(company).totalEmpWage;
+	}
+	
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println("=========Welcome to Employee Wage Computation=======");
@@ -64,6 +72,7 @@ public class EmpWageBuilder implements IComputeEmpWage {
 		empWageBuilder.addCompanyEmpWage("facebook",20,2,10);
 		empWageBuilder.addCompanyEmpWage("apple",10,4,20);
 		empWageBuilder.computeEmpWage();
+		System.out.println("Total Wage for facebook company is :"+empWageBuilder.getTotalWage("facebook"));
 	}
 
 }
